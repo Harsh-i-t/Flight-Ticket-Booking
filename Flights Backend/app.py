@@ -9,7 +9,7 @@ app.secret_key = "your_secret_key"
 
 
 client = MongoClient("mongodb://localhost:27017/")  
-db = client["users"]
+db = client["flight_booking"]
 
 
 @app.route('/')
