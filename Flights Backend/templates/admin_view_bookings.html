@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin View Bookings</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 50px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        p {
+            color: #777;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin View Bookings</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Flight Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Fare</th>
+                <th>Flight Number</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Booked Users</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.flight_name }}</td>
+                    <td>{{ booking.source }}</td>
+                    <td>{{ booking.destination }}</td>
+                    <td>{{ booking.fare }}</td>
+                    <td>{{ booking.flight_number }}</td>
+                    <td>{{ booking.time }}</td>
+                    <td>{{ booking.date }}</td>
+                    <td>
+                        {% for user_id in booking.booked_users %}
+                            {% if user_id in user_details %}
+                                {{ user_details[user_id].username }},
+                            {% else %}
+                                Unknown User,
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Back to <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></p>
+</body>
+</html>

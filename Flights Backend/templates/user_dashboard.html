@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 50px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        a:hover {
+            color: #21618c;
+        }
+
+        p {
+            color: #777;
+            margin-top: 20px;
+        }
+
+        a.logout {
+            color: #e74c3c;
+        }
+
+        a.logout:hover {
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ session.user }}!</h1>
+    
+    <ul>
+        <li><a href="{{ url_for('my_bookings') }}">My Bookings</a></li>
+        <li><a href="{{ url_for('show_flights_user') }}">Book Flights</a></li> <!-- New option to view all flights -->
+        <!-- Add more options as needed -->
+    </ul>
+    <p><a href="{{ url_for('logout') }}" class="logout">Logout</a></p>
+</body>
+</html>
